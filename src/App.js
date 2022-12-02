@@ -14,8 +14,6 @@ import AuthForm from './pages/Auth/AuthForm';
 import SupportForm from './pages/Support/SupportForm';
 import Message from './pages/Message/Message';
 
-
-
 function App() {
   const authCtx = useContext(AuthContext);
   return (

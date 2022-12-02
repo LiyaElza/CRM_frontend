@@ -2,7 +2,6 @@ import React, { useState,useEffect, Fragment } from "react";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import axios from "axios";
-import data from "./Data";
 import './SupportForm.css'
 import Navbar from "../../components/Navbar";
 import { distinct } from "@progress/kendo-data-query";
