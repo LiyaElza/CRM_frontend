@@ -1,47 +1,85 @@
 .emailbackground{
-     position: flex;
-     margin-left:100px;
+    position: flex;
+    margin-left:100px;
 }
 .emailcover{
-    width: 800px;
-    height: 800px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: rgba(0,0,0,0.25);
-
+   width: 800px;
+   height: 800px;
+   border-radius: 12px;
+   box-shadow: rgba(0,0,0,0.25);
+   background-color: rgb(231, 239, 241);
+   /* background-image: url("https://media.istockphoto.com/id/1323378418/photo/blue-grunge-paper-pastel-texture-abstract-sky-sea-frost-pattern-concrete-cement-background.jpg?b=1&s=170667a&w=0&k=20&c=4bIHV_CMir4BE4aTLy7p6N13GgL9vtzclGsTJZ7cs9s="); */
+   /* background-image: url("https://cdn.dribbble.com/users/1510930/screenshots/3771802/media/fb61265ca57331ad752315b29ead6581.png?compress=1&resize=800x600&vertical=top"); */
 }
 .mailtext{
-    padding-left: 20px;
-    width: 700px;
-    resize: none;
-    margin-left: 20px;
-    height: 100px;
-    border-style:ridge;
+   padding-left: 20px;
+   width: 700px;
+   resize: none;
+   margin-left: 20px;
+   height: 400px;
+   border-style:ridge;
 }
 .emailButton{
-    margin-left: 50px;
-    color: black;
-    text-align: center;
-
+   margin-left: 50px;
+   color: white;
+   text-align: center;
+   padding: 1;
+   
+}
+.emailButton:hover{
+  background-color:skyblue;
+   color: white;
 }
 .emailcover{
-    margin-left: 200px;
-    margin-top: 30px;
+   margin-left: 200px;
+   margin-top: 30px;
 }
+
 .Messageheadlabel{
-    color: black;
-    margin-left: 25px;
+   color: black;
+   margin-left: 25px;
+   /* background-color: brown; */
+   /* padding: 10px; */
 }
 .Subjectheadlabel{
-    margin-left: 0
+   margin-left: 0
 }
 #emailsub{
-    max-width: 600px;
-    border-style: ridge;
+   /* max-width: 700px; */
+   border-style: ridge;
+   /* background-color: black; */
+   width: 700px;
 }
 .subjectbox{
-    padding-left: 25px;
+   padding-left: 25px;
 }
 .msgHead{
-    margin-left: 20px; 
+   margin-left: 20px; 
+}
+.emailmsg{
+   /* background-color: black; */
+padding-left: 10px;
+
+}
+/* .msgSubject{
+   border-style: ridge; 
+} */
+.emailbuttondiv{
+   margin-left: 300px;
+   
+}
+.subjectbox{
+    /* background-color: bisque;  */
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.emailmsg{
+   /* background-color: black; */
+   margin-left: 20px;
+
+}
+.mailalert{
+    padding-top: 20px;
+    font-weight: bold;
+    text-align: center;
 }

@@ -27,7 +27,7 @@ const Dashboard = () => {
     };
     fetchCustomerDetails().catch((error) => {
     })  
-    })
+    },[])
     return(
         <div className='main'>
             {/* <h2 className="page-header">Dashboard</h2> */}
