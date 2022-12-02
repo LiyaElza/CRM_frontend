@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+.loginPage {
+  height: 90vh;
+  background-image: url("https://images.pexels.com/photos/733852/pexels-photo-733852.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+.formlogin{
+  margin-bottom: 1000px;
+}
+.auth {
+  margin: 2rem auto;
+  width: 35%;
+  max-width: 40rem;
+  border-radius: 6px;
+  /* background-color: #0f1213; */
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); */
+  padding: 1rem;
+  text-align: center;
+  border-radius: 50%;
+  padding-top: 24rem;
+  /* padding-left: 20rem; */
+  
+
+  /* width: 30%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  padding-top: 9rem;
+  padding-left: 30rem; */
+}
+
+.auth h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(7, 6, 6);
+  /* text-align: right; */
+  font-size: 40px;
+  font-weight: bolder ;
+  margin-top: 4px;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  /* margin-right: 180px;   */
+  text-shadow: 4px 6px 8px #000000;
+  /* text-align: left; */
+  /* color: rgb(13, 13, 13); */
+  /* margin-right: 90px; */
+}
+
+
+.control {
+  margin-bottom: 0.5rem;
+  align-content: center;
+}
+
+.control label {
+  display: block;
+  color: rgb(14, 13, 13);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  font: inherit;
+  background-color: #cbcecf;
+  color: #0c0b0c;
+  border-radius: 15px;
+  border: 1px solid rgb(200, 204, 207);
+  width: 100%;
+  text-align: left;
+  padding: 0.25rem;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actions button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #121315;
+  border: 1px solid #201b23;
+  border-radius: 15px;
+  padding: 0.5rem 2.5rem;
+}
+
+.actions button:hover {
+  background-color: #746d78;
+  border-color: #504a53;
+}
+
+/* .actions .toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #5c87cc;
+  border: none;
+  padding: 0.15rem 1.5rem;
+} */
+
+/* .actions .toggle:hover {
+  background-color: transparent;
+  color: #6f9acf;
+} */
