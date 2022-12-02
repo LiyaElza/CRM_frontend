@@ -1,13 +1,24 @@
-import React, { useState, Fragment } from "react";
+import React, { useState,useEffect, Fragment } from "react";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import axios from "axios";
 import data from "./Data";
 import './SupportForm.css'
 import Navbar from "../../components/Navbar";
+import { distinct } from "@progress/kendo-data-query";
 
 const SupportForm = () => {
     const [supports, setSupports] = useState([]);
+    const [product,setProduct]=useState([])
+  useEffect(()=>{
+    const fetchData=async ()=>{
+    const response=await fetch('http://127.0.0.1:8000/app/products/')
+    const newData=await response.json();
+    setProduct(newData);
+    console.log(newData);
+  }
+  fetchData();
+},[]);
     const fetchsupportdetails = async () => {
       const response=await fetch(
         'http://127.0.0.1:8000/supportapi/support/'
@@ -26,26 +37,30 @@ const SupportForm = () => {
     const [editFormData, setEditFormData] = useState({});
   
     const [editSupportId, setEditSupportId] = useState(null);
+
   
-    const handleAddFormChange = (event) => {
-      event.preventDefault();
   
-      const fieldName = event.target.getAttribute("name");
-      const fieldValue = event.target.value;
+    const handleAddFormChange = (name,value) => {
   
+      // const fieldName = event.target.getAttribute("name");
+      // const fieldValue = event.target.value;
+      const fieldName = name;
+      const fieldValue = value;
       const newFormData = { ...addFormData };
       newFormData[fieldName] = fieldValue;
-  
+      console.log(newFormData)
       setAddFormData(newFormData); 
     };
   
-    const handleEditFormChange = (event) => {
-      event.preventDefault();
+    const handleEditFormChange = (name,value) => {
+      // event.preventDefault();
   
-      const fieldName = event.target.getAttribute("name");
-      const fieldValue = event.target.value;
+      // const fieldName = event.target.getAttribute("name");
+      // const fieldValue = event.target.value;
+      const fieldName = name;
+      const fieldValue = value;
   
-      const newFormData = { ...editFormData };
+const newFormData = { ...editFormData };
       newFormData[fieldName] = fieldValue;
   
       setEditFormData(newFormData);
@@ -135,42 +150,63 @@ const SupportForm = () => {
         const items = supports.filter(item => item.id !== supportId);  
         setSupports(items);  
       })  }
-  
     return (
       <div>
         <Navbar />
         <div className="support-container">
           <h2>SUPPORT</h2>
           <form onSubmit={handleAddFormSubmit} className="supportcard">
-            <input
-              type="text"
-              name="customer"
-              required="required"
-              placeholder="Enter customer Id"
-              onChange={handleAddFormChange} /><br />
-            <input
-              type="text"
-              name="product"
-              required="required"
-              placeholder="Enter product Id"
-              onChange={handleAddFormChange} /><br />
-            <input
-              type="text"
-              name="supporttype"
-              required="required"
-              placeholder="Enter Support Needed"
-              onChange={handleAddFormChange} /><br />
-            <input
-              type="text"
-              name="remarks"
-              placeholder="Enter Remarks if any"
-              onChange={handleAddFormChange} /><br />
-            <input
-              type="text"
-              name="status"
-              required="required"
-              placeholder="Enter Status"
-              onChange={handleAddFormChange} />
+          <input
+            type="text"
+            name="customerid"
+            required="required"
+            placeholder="Enter customerid"
+            onChange={(val)=>handleAddFormChange("customer",val.target.value)}
+          /><br />
+
+          {/* <label for="subject"></label>     
+          <div className=''>
+          <select onChange={(val) => handleAddFormChange("customer",val.target.value)}> 
+            {result.map(item=>(
+            <option key={item.id} value={item.id}>{item.id}</option> 
+          ))}
+          <option value="">Choose Customer Id</option>
+          </select><br></br>
+
+        </div> */}
+          {/* <label for="subject"></label> 
+          <div className=''>
+          <select className=''value={productName} onChange={handlenameChange}> 
+            {result.map(item=>(
+            <option key={item.id}>{item.title}</option> 
+          ))}
+          <option value="">Choose Product</option>
+          </select><br></br>
+          </div> */}
+          <select onChange={(val) => handleAddFormChange("product",val.target.value)}>
+          <option  value="">Choose Product</option>
+          {product.map(item=>(
+          <option value={item.title} key={item.id}>{item.title}</option> 
+        ))}
+ 
+        </select><br></br>
+        <select onChange={(val) => handleAddFormChange("supporttype",val.target.value)}>
+        <option value="" selected>Enter kind of support needed </option>
+        <option value="Product Use & Support">Product Use & Support</option>
+        <option value="Product Service">Product Service</option>
+        <option value="Product Spare Parts">Product Spare Parts</option>
+        </select><br />
+        <input
+          type="text"
+          name="remarks"
+          placeholder="Enter Remarks if any"
+          onChange={(val) => handleAddFormChange("remarks",val.target.value)} /><br />
+        <select onChange={(val) => handleAddFormChange("status",val.target.value)}>
+        <option value="" selected>Status</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Not Initiated">Not Initiated</option>
+        </select><br />
         <div>
           <button type="Submit">Add</button>
           <button type="Reset">Reset</button>

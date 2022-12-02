@@ -68,6 +68,7 @@ function Form() {
           'Content-Type':'application/json',
         }
       });
+    
       setProductType('');
       setProductName('');
       setOfferMsg('');
