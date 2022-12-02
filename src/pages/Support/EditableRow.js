@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const EditableRow = ({
   editFormData,
@@ -8,35 +9,15 @@ const EditableRow = ({
   return (
     <tr>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter customerid"
-          name="customerid"
-          value={editFormData.customer}
-          onChange={handleEditFormChange}
-        ></input>
+        {editFormData.customer}
+        
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter productid"
-          name="productid"
-          value={editFormData.product}
-          onChange={handleEditFormChange}
-        ></input>
+        {editFormData.product}
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter support"
-          name="support"
-          value={editFormData.supporttype}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
+       {editFormData.supporttype}
+       </td>
       <td>
         <input
           type="text"
@@ -44,19 +25,19 @@ const EditableRow = ({
           placeholder="Enter remarks"
           name="remarks"
           value={editFormData.remarks}
-          onChange={handleEditFormChange}
+          onChange={(val) => handleEditFormChange("remarks",val.target.value)}
         ></input>
+        
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter status"
-          name="status"
-          value={editFormData.status}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
+      <select value={editFormData.support} onChange={(val) => handleEditFormChange("status",val.target.value)}>
+         <option value="" selected>Status</option>
+         <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Not Initiated">Not Initiated</option>
+        
+       </select>
+       </td>
       <td>
         <button type="submit">Save</button>
         <button type="button" onClick={handleCancelClick}>
