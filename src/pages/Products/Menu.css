@@ -6,3 +6,9 @@
     font-size: 35px;
     font-style: bold;
 }
+.menu-item{
+    display: flex;
+    border-style: double;
+    border-width: 5px;
+    border-radius: 0px;
+}
