@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 .loginPage {
   height: 90vh;
-  background-image: url("https://images.pexels.com/photos/733852/pexels-photo-733852.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-image: url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
   background-size:cover;
   background-repeat: no-repeat;
 }
@@ -18,7 +18,7 @@
   padding: 1rem;
   text-align: center;
   border-radius: 50%;
-  padding-top: 24rem;
+  padding-top: 13rem;
   /* padding-left: 20rem; */
   
 

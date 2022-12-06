@@ -1,4 +1,8 @@
 import React from "react";
+import { FiEdit3 } from "react-icons/fi";
+import './SupportForm.css';
+
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ReadOnlyRow = ({ support, handleEditClick, handleDeleteClick }) => {
   return (
@@ -9,14 +13,15 @@ const ReadOnlyRow = ({ support, handleEditClick, handleDeleteClick }) => {
       <td>{support.remarks}</td>
       <td>{support.status}</td>
       <td>
-      <button
+      <button className="buttonsupportsubmitreset"
           type="button"
           onClick={(event) => handleEditClick(event, support)}
-        >
-          Edit
+        ><FiEdit3></FiEdit3>
+          
         </button>
-        <button type="button" onClick={() => handleDeleteClick(support.id)}>
-          Delete
+        <span></span>
+        <button  className="buttonsupportsubmitreset" type="button" onClick={() => handleDeleteClick(support.id)}>
+          <RiDeleteBin6Line></RiDeleteBin6Line>
         </button>
       </td>
     </tr>

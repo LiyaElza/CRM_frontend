@@ -39,7 +39,8 @@
 }
   .supporttable {
     border-collapse: collapse;
-    width: 100%;
+    width: 85%;
+    margin-left: 90px;
   }
   
   .supporttable th,
@@ -72,4 +73,17 @@
   .status{
     width: 200px;
     margin-left: 20px;
+  }
+
+
+
+  .buttonsupportsubmitreset{
+    border-radius: 20px;
+   background-color: #0d4779;
+  }
+
+
+  .buttonsupportsubmitreset:hover{
+    background-color:rgb(24, 176, 236);
+    color: white;
   }

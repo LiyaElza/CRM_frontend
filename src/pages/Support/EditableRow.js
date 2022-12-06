@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { MdOutlineSaveAlt } from "react-icons/md"
+
+import { MdCancel } from "react-icons/md"
+import './SupportForm.css';
 
 const EditableRow = ({
   editFormData,
@@ -39,9 +43,10 @@ const EditableRow = ({
        </select>
        </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
+        <button  className="buttonsupportsubmitreset" type="submit"><MdOutlineSaveAlt></MdOutlineSaveAlt></button>
+        <span></span>
+        <button  className="buttonsupportsubmitreset" type="button" onClick={handleCancelClick}>
+          <MdCancel></MdCancel>
         </button>
       </td>
     </tr>

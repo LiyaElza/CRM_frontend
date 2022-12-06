@@ -5,6 +5,9 @@ import axios from "axios";
 import './SupportForm.css'
 import Navbar from "../../components/Navbar";
 import { distinct } from "@progress/kendo-data-query";
+import { RiAddFill } from "react-icons/ri";
+
+import { RxReset } from "react-icons/rx";
 
 const SupportForm = () => {
     const [supports, setSupports] = useState([]);
@@ -206,9 +209,10 @@ const newFormData = { ...editFormData };
         <option value="Completed">Completed</option>
         <option value="Not Initiated">Not Initiated</option>
         </select><br />
-        <div>
-          <button type="Submit">Add</button>
-          <button type="Reset">Reset</button>
+        <div >
+          <button type="Submit" className="buttonsupportsubmitreset"><RiAddFill></RiAddFill></button>
+          <span></span>
+          <button type="Reset" className="buttonsupportsubmitreset"><RxReset></RxReset></button>
         </div>
         </form></div>
       <form onSubmit={handleEditFormSubmit}>

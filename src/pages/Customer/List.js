@@ -104,7 +104,7 @@ function List() {
       },
       {
         name: "Action",
-        cell: (row)=><Button variant="success" onClick={(event) => handleChange(row.id)}>Product List</Button>,
+        cell: (row)=><Button className='actionbutton'  variant="success" onClick={(event) => handleChange(row.id)}>Product List</Button>,
       },
   
       
@@ -113,9 +113,11 @@ function List() {
   
 
   return (
-  <div>
+  <div >
+    <span></span>
     <div className="container">
-        <h1 className='text-center mt-4'>Customer Data</h1>
+      <div className='innercontainer'>
+        {/* <h1 className='text-center mt-4'>Customer Data</h1> */}
     <DataTable 
     columns={columns}
     data={filtercontacts} 
@@ -134,6 +136,7 @@ function List() {
       />}
 
     />
+    </div>
 
         
 

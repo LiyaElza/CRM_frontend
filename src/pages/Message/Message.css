@@ -4,10 +4,10 @@
 }
 .emailcover{
    width: 800px;
-   height: 800px;
+   height: 650px;
    border-radius: 12px;
    box-shadow: rgba(0,0,0,0.25);
-   background-color: rgb(231, 239, 241);
+   background-color: rgb(123, 161, 171);
    /* background-image: url("https://media.istockphoto.com/id/1323378418/photo/blue-grunge-paper-pastel-texture-abstract-sky-sea-frost-pattern-concrete-cement-background.jpg?b=1&s=170667a&w=0&k=20&c=4bIHV_CMir4BE4aTLy7p6N13GgL9vtzclGsTJZ7cs9s="); */
    /* background-image: url("https://cdn.dribbble.com/users/1510930/screenshots/3771802/media/fb61265ca57331ad752315b29ead6581.png?compress=1&resize=800x600&vertical=top"); */
 }
@@ -16,7 +16,7 @@
    width: 700px;
    resize: none;
    margin-left: 20px;
-   height: 400px;
+   height: 300px;
    border-style:ridge;
 }
 .emailButton{
@@ -24,10 +24,12 @@
    color: white;
    text-align: center;
    padding: 1;
+   border-radius: 20px;
+   background-color: #0d4779;
    
 }
 .emailButton:hover{
-  background-color:skyblue;
+  background-color:rgb(24, 176, 236);
    color: white;
 }
 .emailcover{
@@ -38,17 +40,20 @@
 .Messageheadlabel{
    color: black;
    margin-left: 25px;
+   
    /* background-color: brown; */
    /* padding: 10px; */
 }
 .Subjectheadlabel{
-   margin-left: 0
+   margin-left: 0;
+   font-size: 20px;
 }
 #emailsub{
    /* max-width: 700px; */
    border-style: ridge;
    /* background-color: black; */
    width: 700px;
+   height: 45px;
 }
 .subjectbox{
    padding-left: 25px;
@@ -59,6 +64,8 @@
 .emailmsg{
    /* background-color: black; */
 padding-left: 10px;
+font-size: 20px;
+
 
 }
 /* .msgSubject{
@@ -83,3 +90,48 @@ padding-left: 10px;
     font-weight: bold;
     text-align: center;
 }
+
+
+
+
+
+
+
+
+#star::after{
+
+   position: absolute;
+ 
+   content: "*";
+ 
+   /* padding-top: 1px; */
+ 
+   color:rgb(207, 20, 20);
+ 
+ }
+ 
+ .akshay{
+ 
+  color: black;
+ 
+   text-align: center;
+ 
+   font-size: medium;
+ 
+ }
+ 
+ .subin{
+ 
+   color: rgb(207, 20, 20);
+ 
+   text-align: left;
+ 
+   font-size: small;
+ 
+   content: "*";
+ 
+ }
+ 
+ 
+ 
+ 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Customer.css';
+import CustomerModel from './CustomerModel';
 const Customeradd = () => {
      const [selectedFile,setState] = useState(null);
 
@@ -69,9 +70,7 @@ const Customeradd = () => {
                         </button>
                         </div>
                     <div className='filedata'>{fileData()}</div>
-                    <Link to="/employee/managerslist">
-                        <button className='button'><span>Sample Excel</span></button>
-                    </Link>
+                    <CustomerModel/>
                     </div>
                 </div>
             );

@@ -11,4 +11,5 @@
     border-style: double;
     border-width: 5px;
     border-radius: 0px;
+    min-width: 450px;
 }
