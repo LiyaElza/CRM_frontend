@@ -4,12 +4,17 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import './List.css';
+import DataTable from "react-data-table-component";
+import Button from 'react-bootstrap/Button';
 
 function List() {
   const [contacts, setContacts] = useState([]);
+  const [filtercontacts, setFilterContacts] = useState([]);
   const [customerOrders,setCustomerOrders]=useState([]);
   const [search, setSearch] = useState('');
+  const [searchh, settSearch] = useState(''); 
   const [innerSearch, setInnerSearch] = useState('');
+
 
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
@@ -32,6 +37,7 @@ function List() {
         });
       }
       setContacts(loadedCustomerDetails);
+      setFilterContacts(loadedCustomerDetails);
     };
     fetchCustomerDetails().catch((error) => {
     })  
@@ -69,47 +75,67 @@ function List() {
     fetchCustomerOrderDetails().catch((error) => {
     })  
     }
+    
+    useEffect(()=>{
+      const result=contacts.filter((ev)=>{
+        return ev.first_name.toLowerCase().match(searchh.toLowerCase());
+      });
+      setFilterContacts(result);
+    },[searchh])
+
+
+    const columns = [
+      {
+        name: "First Name",
+        selector: (row) => row.first_name,
+        sortable:true,
+      },
+      {
+        name: "Last Name",
+        selector: (row) => row.last_name,
+      },
+      {
+        name: "Email",
+        selector: (row) => row.email,
+      },
+      {
+        name: "Phone",
+        selector: (row) => row.phone,
+      },
+      {
+        name: "Action",
+        cell: (row)=><Button variant="success" onClick={(event) => handleChange(row.id)}>Product List</Button>,
+      },
+  
+      
+    ];
+  
+  
 
   return (
   <div>
-    <Container className="container">
+    <div className="container">
         <h1 className='text-center mt-4'>Customer Data</h1>
-        <Form>
-          <InputGroup className='my-3'>
-            <Form.Control className='search'
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder='Search customers'
-            />
-          </InputGroup>
-        </Form>
+    <DataTable 
+    columns={columns}
+    data={filtercontacts} 
+    pagination
+    className='datatable' 
+    fixedHeaderScrollHeight='40px'
+    selectableRowsHighlight
+    highlightOnHover
+    subHeader
+    subHeaderComponent={<input 
+      type='text' 
+      placeholder='Search here'
+      className='search'
+      value={searchh}
+      onChange={(e)=>settSearch(e.target.value)}
+      />}
 
-        <Table className='customertable'>
-          <thead>
-            <tr className='row'>
-              <th>FirstName</th>
-              <th>LastName</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts
-              .filter((item) => {
-                return search.toLowerCase() === ''
-                  ? item
-                  : item.first_name.toLowerCase().includes(search);
-              })
-              .map((item, index) =>( 
-                <tr key={index}>
-                  <td>{item.first_name}</td>
-                  <td>{item.last_name}</td>
-                  <td>{item.email}</td>
-                  <td>{item.phone}</td>
-               
-<button onClick={(event) => handleChange(item.id)} className="btn-modal">
-ProductList
-</button>
+    />
+
+        
 
 {modal && (
   <div className="modal">
@@ -159,12 +185,7 @@ ProductList
     </div>
 
    )}
-
-          </tr>
-              ))}
-          </tbody>
-        </Table>
-    </Container>
+    </div>
 </div>
   );
 }

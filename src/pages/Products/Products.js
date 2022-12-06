@@ -7,10 +7,19 @@ import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import 'react-tabs/style/react-tabs.css';
 import Modal1 from './Modal1';
+import Categories from './Categories';
 
 function Products() {
   const [menuItems, setMenuItems] = useState([]);
   const [selectedFile,setState] = useState(null);
+  const [product_type, setProduct_Type] = useState("");
+  const [product, setProduct] = useState("");
+  const [img, setImg] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [categories, setCategories] = useState(['All']);
+  const [allMenuItems, setAllMenuItems] = useState([]);
+
 
 
   useEffect(() => {
@@ -26,19 +35,41 @@ function Products() {
     });
   }, []);
 
+  useEffect(() => {
+    const productdetailss = async () => {
+      axios.get('http://127.0.0.1:8000/app/products/')
+      .then(res => {
+        setAllMenuItems(res.data);
+      
+      });
+    };
+
+    productdetailss().catch((error) => {
+    });
+  }, []);
+
 
 
   // On file select (from the pop up)
   const onFileChange = event => {
       setState(event.target.files[0]);
   };
+  let auth=sessionStorage.getItem('jwt');
   const onFileUpload = (e) => {
       e.preventDefault();
       setState(e.target.files)
       const formData = new FormData()
       formData.append('file',selectedFile)
       console.log(formData)
-      fetch('http://127.0.0.1:8000/app/productsupload/', {method: 'POST',body:formData})
+      fetch('http://127.0.0.1:8000/app/productsupload/', {method: 'POST',
+      headers:{
+        Accept:'application/json',
+
+        'Content-Type':'application/json',
+
+        'Authorization':auth,
+      },
+      body:formData})
       .then(res => {
           if (res.ok) {
               console.log(res.data);
@@ -73,6 +104,31 @@ function Products() {
   }
   }
 
+
+
+
+  menuItems.map(item => {
+    if(!categories.includes(item.category)) {
+      setCategories([...categories, item.category]);
+    }
+  });
+
+  const filterItems = (category) => {
+    const filteredMenuItems = [];
+    if(category === 'All') {
+      setMenuItems(allMenuItems);
+    } else {
+      allMenuItems.map(item => {
+        if(item.category === category && !filteredMenuItems.includes(item)) {
+          filteredMenuItems.push(item);
+        }
+      })
+      setMenuItems(filteredMenuItems);
+    }
+  }
+
+
+
   return (
     <main>
       <Navbar/>
@@ -88,6 +144,7 @@ function Products() {
     <TabPanel>
     <section className='menu-section' >
         <div className='title'></div>
+        <Categories filterItems={filterItems} categories={categories} />
         <Menu items={menuItems} />
       </section>
     </TabPanel>

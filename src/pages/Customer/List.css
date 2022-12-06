@@ -5,7 +5,8 @@
 .search{
     padding-left: 75px;
     padding-right: 54px;
-    height: 50px;
+    /* margin-right: 1000px; */
+    /* height: 50px; */
 }
 
 .my-3{
@@ -50,6 +51,9 @@
 position: fixed;
   
 }
+.search{
+    margin-left: 100px;
+}
 
 .modal-content {
  align-items: center;
@@ -92,6 +96,7 @@ background-color: rgb(71, 65, 65);
     /* padding-right: 30px; */
   
     /* word-spacing: 72px; */
+    
 }
 
 h1{
@@ -119,4 +124,14 @@ font-size: 2em;
 
 .table1 th{
     padding: 28px;
+}
+
+
+.datatable{
+   overflow:none;
+   float: left;
+   width: 10px;
+   margin-left: 100px;
+   /* height:100px; */
+
 }
