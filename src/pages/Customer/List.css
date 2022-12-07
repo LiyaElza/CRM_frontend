@@ -7,7 +7,10 @@
     padding-right: 54px;
     /* margin-right: 1000px; */
     /* height: 50px; */
+    height: 45px;
+    
 }
+
 
 .my-3{
     
@@ -51,9 +54,9 @@
 position: fixed;
   
 }
-.search{
-    margin-left: 150px;
-}
+/* .search{
+    margin-left: 100px;
+} */
 
 .modal-content {
  align-items: center;
@@ -131,7 +134,25 @@ font-size: 2em;
    overflow:none;
    float: left;
    width: 10px;
-   margin-left: 150px;
+   margin-left: 100px;
    /* height:100px; */
 
 }
+
+.innercontainer{
+    padding-left: 110px;
+    padding-right: 70px;
+    
+}
+
+.actionbutton{
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: #0d4779
+}
+
+
+.actionbutton:hover{
+    background-color:rgb(24, 176, 236);
+     color: white;
+  }

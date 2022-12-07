@@ -1,9 +1,80 @@
 .offerform{
   width: 80%;
   padding-left: 200px;
+  padding-top: 20px;
+  font-size: medium;
 }
 
 .buttonask{
-  border-radius: 20%;
+  border-radius: 20px;
+  background-color: #0d4779;
+  margin-left: 300px;
 }
+.buttonask:hover{
+  background-color:rgb(24, 176, 236);
+   color: white;
+}
+
+.offerformform{
+  padding-top: 5px;
+  width: 800px;
+   height: 520px;
+   border-radius: 12px;
+   box-shadow: rgba(0,0,0,0.25);
+   background-color: rgb(123, 161, 171);
+}
+
+.txtarea{
+  /* padding-left: 20px; */
+   /* width: 770px; */
+   /* resize: none; */
+   /* margin-left: 25px; */
+   height: 110px;
+   border-style:ridge;
+}
+
+.inneroffer{
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+
+
+#star::after{
+
+  position: absolute;
+
+  content: "*";
+
+  /* padding-top: 1px; */
+
+  color:rgb(207, 20, 20);
+
+}
+
+.akshay{
+
+ color: black;
+
+  text-align: center;
+
+  font-size: medium;
+
+}
+
+.subin{
+
+  color: rgb(207, 20, 20);
+
+  text-align: left;
+
+  font-size: small;
+
+  content: "*";
+
+}
+
+
+
+
 

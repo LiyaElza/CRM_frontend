@@ -16,6 +16,12 @@ function Form() {
   const[offerMsg,setOfferMsg]=useState('')
   const [product,setProduct]=useState([])
   const [menuItems, setMenuItems] = useState([]);
+
+  const[error,setError]=useState(false);
+  const[errorproductType,setProductTypeError]=useState(false);
+  const[errorproductName,setProductNameerror]=useState(false);
+  const[alertMsg,setAlertMsg]=useState('');
+
   useEffect(()=>{
       const fetchData=async ()=>{
       const response=await fetch('http://127.0.0.1:8000/app/products/')
@@ -68,6 +74,44 @@ function Form() {
           'Content-Type':'application/json',
         }
       });
+
+      if(offerMsg.length==0){
+
+        setError("Please enter the offer Message");
+
+      }
+
+      if(productType.length==0)
+
+      {
+
+        setProductTypeError("Please select the Product Type");
+
+      }
+
+      if(productName.length==0)
+
+      {
+
+        setProductNameerror("Please select the Product Name");
+
+      }
+
+      if(res.status===201)
+
+      {
+
+        setAlertMsg("Offer Added...Alert sent to customers");
+
+      }
+
+      else
+
+      {
+
+        setAlertMsg("Ooops!.... Adding Offer Failed...!");
+
+      }
     
       setProductType('');
       setProductName('');
@@ -84,27 +128,42 @@ function Form() {
 
     <div class="container">
     <form onSubmit={addButton} className="offerform">
-  <label for="subject">Product Type</label>     
+      <div className='offerformform'>
+        <div className='inneroffer'>
+  <label for="subject" id="star">Product Type</label>     
   <div className=''>
  <select className=''value={productType} onChange={handletypeChange}> 
  {result.map(item=>(
     <option key={item.id}>{item.category}</option> 
   ))}
   <option value="">Choose Product Type</option>
- </select><br></br>
+ </select>
+ <div className='subin'>
+
+    {errorproductType}
+
+    </div>
+ 
+ 
  </div>
 
- <label for="subject">Product Name</label> 
+ <label for="subject" id="star">Product Name</label> 
  <select className=''value={productName} onChange={handlenameChange}>
  <option  value="">Choose Product</option>
   {product.map(item=>(
     <option key={item.id}>{item.title}</option> 
   ))}
  
- </select><br></br>
+ </select>
+ <div className='subin'>
+
+    {errorproductName}
+
+    </div>
+
     
     
-      <label for="subject">Offers</label> <br></br>
+      <label for="subject" id="star">Offers</label> <br></br>
 <div className='msg' value={offerMsg} onChange={handleOfferMsg}>
        <textarea
        type="text"
@@ -112,16 +171,27 @@ function Form() {
        name=''
        className='txtarea'  
        placeholder='Enter the msg'
-       rows={3}
-       required
        
        ></textarea>
        </div>
+       <div className='subin'>
 
-  <div className='buttonask'>
-       <button type="Submit">Submit</button>
+    {error}
+
+    </div>
+
+   <div>
+       <button className='buttonask' type="Submit">Submit</button>
+       </div>
+       <div className='akshay'>
+
+    {alertMsg}
+
+    </div>
+       </div>
        </div>
     </form>
+   
   </div>
   );
 };

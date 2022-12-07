@@ -8,6 +8,10 @@ function Message() {
     const[emailsubject,setEmailsub]=useState('')
     const[emailmsg,setEmailMsg]=useState('')
     const[message,setMessage]=useState('')
+    const[alertsubject,setAlertSubject]=useState(false)
+    const[alertmsg,setAlertMsg]=useState(false)
+    // const[send,setSend]=useState('')
+
     const handleEmailsub=(event)=>{
         setEmailsub(event.target.value)
     }
@@ -24,6 +28,16 @@ function Message() {
         else
           setMessage("Message Sent")
       })
+
+      if(emailsubject.length==0){
+        setAlertSubject("Please enter the subject");
+      }
+      if(emailmsg.length==0){
+        setAlertMsg("Please enter the Message");
+      }
+
+
+
       setEmailsub('');
       setEmailMsg('');
       setMessage('');
@@ -34,20 +48,25 @@ function Message() {
        <div className='emailbackground'>
           <form onSubmit={sendButton}>
               <div className='emailcover'>
-              <label for ="messagelabel"className='Messageheadlabel'><h3>Message</h3></label>
+              <label for ="messagelabel"className='Messageheadlabel' ><h2>Message</h2></label>
               <div className='subjectbox' value={emailsubject} onChange={handleEmailsub}>
-              <label for ="msgSubject"className='Subjectheadlabel'>Subject</label><br />
+              <label for ="msgSubject"className='Subjectheadlabel' id='star'>Subject</label><br />
               <input 
               type="text"
               id="emailsub"
               name=''
               placeholder='Enter the subject'
               className="emailsub"
-              required
+              
               ></input>
+              <div className='subin'>
+
+{alertsubject}
+
+</div>
               </div>
               <div className='emailmsg' value={emailmsg} onChange={handleEmailMsg}>
-               <label for ="msgSubject"className='msgHead'>Message</label>
+               <label for ="msgSubject"className='msgHead'  id='star'>Message</label>
                <br></br>
               <textarea 
               type="text"
@@ -55,8 +74,13 @@ function Message() {
               name=''
               placeholder='Enter the message'
               className="mailtext"
-              required
+              
               ></textarea>
+              <div className='subin'>
+
+{alertmsg}
+
+</div>
               </div>
           
               <div className='emailbuttondiv'>

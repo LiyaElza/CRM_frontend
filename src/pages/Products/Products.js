@@ -75,6 +75,9 @@ function Products() {
               console.log(res.data);
               alert("File uploaded successfully.")
           }
+          else{
+            alert("File upload failed....duplicate values present")
+          }
       });
   };
 
@@ -144,7 +147,9 @@ function Products() {
     <TabPanel>
     <section className='menu-section' >
         <div className='title'></div>
+        <div className='category'>
         <Categories filterItems={filterItems} categories={categories} />
+        </div>
         <Menu items={menuItems} />
       </section>
     </TabPanel>
