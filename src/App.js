@@ -13,6 +13,7 @@ import Home from './pages/Home/Home';
 import AuthForm from './pages/Auth/AuthForm';
 import SupportForm from './pages/Support/SupportForm';
 import Message from './pages/Message/Message';
+import Recommendation from './pages/Recommendation/Recommendation';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
         {authCtx.isLoggedIn && ( <Route path='/reports' ><Reports/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/offers' ><Offers/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/message' ><Message /></Route>)}
+        {authCtx.isLoggedIn && ( <Route path='/recommendation' ><Recommendation /></Route>)}
       
         {/* {!authCtx.isLoggedIn && (
           <Route path='/auth'>
