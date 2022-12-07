@@ -12,15 +12,33 @@ import { RxReset } from "react-icons/rx";
 const SupportForm = () => {
     const [supports, setSupports] = useState([]);
     const [product,setProduct]=useState([])
-  useEffect(()=>{
-    const fetchData=async ()=>{
-    const response=await fetch('http://127.0.0.1:8000/app/products/')
-    const newData=await response.json();
-    setProduct(newData);
-    console.log(newData);
-  }
-  fetchData();
-},[]);
+
+    const fetchCustomerProducts= async(data) =>{
+      const response=await fetch(
+        'http://127.0.0.1:8000/apii/customerorders/',{
+             method:'POST',     
+             headers: {
+               'Accept':'application/json',
+               'content-type':'application/json'
+             },
+             body:JSON.stringify({
+               id:data,
+            })}
+               
+      );
+      if (!response.ok){
+       throw  new Error('something went wrong!');
+      }   
+     const responseData=await response.json();
+     console.log(responseData)
+    const loadedData=[]
+    responseData.map((item) =>{
+      loadedData.push(item.ProductName)
+    })
+    console.log(loadedData)
+    setProduct(loadedData);  
+    }
+
     const fetchsupportdetails = async () => {
       const response=await fetch(
         'http://127.0.0.1:8000/supportapi/support/'
@@ -48,9 +66,12 @@ const SupportForm = () => {
       // const fieldValue = event.target.value;
       const fieldName = name;
       const fieldValue = value;
+      if(name==="customer"){
+        fetchCustomerProducts(fieldValue);
+
+      }
       const newFormData = { ...addFormData };
       newFormData[fieldName] = fieldValue;
-      console.log(newFormData)
       setAddFormData(newFormData); 
     };
   
@@ -160,7 +181,7 @@ const newFormData = { ...editFormData };
           <form onSubmit={handleAddFormSubmit} className="supportcard">
           <input
             type="text"
-            name="customerid"
+            name="customer"
             required="required"
             placeholder="Enter customerid"
             onChange={(val)=>handleAddFormChange("customer",val.target.value)}
@@ -188,7 +209,7 @@ const newFormData = { ...editFormData };
           <select onChange={(val) => handleAddFormChange("product",val.target.value)}>
           <option  value="">Choose Product</option>
           {product.map(item=>(
-          <option value={item.title} key={item.id}>{item.title}</option> 
+          <option value={item}>{item}</option> 
         ))}
  
         </select><br></br>

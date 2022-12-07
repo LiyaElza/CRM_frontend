@@ -75,6 +75,9 @@ function Products() {
               console.log(res.data);
               alert("File uploaded successfully.")
           }
+          else{
+            alert("File upload failed....duplicate values present")
+          }
       });
   };
 

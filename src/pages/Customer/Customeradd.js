@@ -18,11 +18,20 @@ const Customeradd = () => {
 
         const formData = new FormData();
         formData.append('employeedetails',selectedFile);
-        fetch('http://127.0.0.1:8000/employee/addemployee/', {method: 'post',body: formData})
+        fetch('http://127.0.0.1:8000/employee/addemployee/', {method: 'post',
+        headers:{'Accept':'application/json',
+
+                'Content-Type':'application/json'},
+
+                // 'Authorization':auth},
+                body: formData})
         .then(res => {
             if (res.ok) {
                 console.log(res.data);
                 alert("File uploaded successfully.")
+            }
+            else{
+                alert("File upload failed....duplicate values present")
             }
         });
     };
@@ -46,7 +55,7 @@ const Customeradd = () => {
                 <div className='warnchoose'>
                     <br />
 
-                    <h6>*️⃣Choose before Pressing the Upload button</h6>
+                    <h6>Choose before Pressing the Upload button</h6>
 
                  
                 </div>
