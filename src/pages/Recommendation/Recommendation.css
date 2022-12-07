@@ -1,0 +1,41 @@
+h2{
+    text-align: center;
+    padding-top: 100px;
+}
+.charts-line{
+    align-items: center;
+    margin-top: 100px;
+    width : 500px;
+    height: 800px;
+    /* flex: 33.33%; */
+    padding-left :25px;
+}
+.recommendation-content{
+    display: flex;
+   
+}
+.bundle-data{
+    flex: 33.33%;
+    padding-left: 220px;
+    padding-top: 100px;
+}
+.Table1 th, td{
+    padding: 1rem;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    padding-left: 40px;
+    border: 1px solid;
+ }
+ .Table1{
+    width: 90%;
+    border-collapse: collapse;
+    /* background-color:lightgrey; */
+    background-color: lightblue;
+ }
+.Table1 th{
+    font-size: large;
+}
+.Row1{
+    line-height: 2px;
+}
