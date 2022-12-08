@@ -11,7 +11,7 @@ function Message() {
     const[alertsubject,setAlertSubject]=useState(false)
     const[alertmsg,setAlertMsg]=useState(false)
     // const[send,setSend]=useState('')
-
+    let auth=sessionStorage.getItem('jwt');
     const handleEmailsub=(event)=>{
         setEmailsub(event.target.value)
     }
@@ -20,8 +20,12 @@ function Message() {
     }
     const sendButton=async(event)=>{
       event.preventDefault();
+      let config = {
+        headers: {
+          'Authorization': auth
+        },}
       const data={"subject":emailsubject,"message":emailmsg}
-      axios.post('http://127.0.0.1:8000/mailapp/mail/',data)
+      axios.post('http://127.0.0.1:8000/mailapp/mail/',data,config)
       .then(function (response) {
         if(response?.status===200)
         console.log(message)

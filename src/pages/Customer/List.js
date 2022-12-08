@@ -14,12 +14,14 @@ function List() {
   const [search, setSearch] = useState('');
   const [searchh, settSearch] = useState(''); 
   const [innerSearch, setInnerSearch] = useState('');
-
-
+  let auth=sessionStorage.getItem('jwt');
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/customers/'
+         'http://127.0.0.1:8000/apii/customers/',{headers:{
+                'Accept':'application/json',
+                 'Content-Type':'application/json',
+                 'Authorization':auth}}
        );
        if (!response.ok){
         throw  new Error('something went wrong!');
@@ -58,7 +60,8 @@ function List() {
               method:'post',     
               headers: {
                 'Accept':'application/json',
-                'content-type':'application/json'
+                'content-type':'application/json',
+                'Authorization':auth,
               },
               body:JSON.stringify({
                 id:data,

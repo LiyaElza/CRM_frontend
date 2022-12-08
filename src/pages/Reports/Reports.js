@@ -12,6 +12,9 @@ function Reports() {
   const [monthData,setMonthData]=useState([]);
   const [productData,setProductData]=useState([]);
   const [customerData,setCustomerData]=useState([]);
+  let auth=sessionStorage.getItem('jwt');
+
+
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [
@@ -34,7 +37,11 @@ function Reports() {
   useEffect(() => {
     const fetchMonthlySales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/monthlysales/'
+        'http://127.0.0.1:8000/api/monthlysales/',{
+          headers:{
+            'Authorization':auth
+          }
+        }
       );
 
       if (!response.ok) {
@@ -64,7 +71,11 @@ function Reports() {
 
     const fetchProductSales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/productsales/'
+        'http://127.0.0.1:8000/api/productsales/',{
+          headers:{
+            'Authorization':auth
+          }
+        }
       );
 
       if (!response.ok) {
@@ -97,7 +108,9 @@ function Reports() {
     
     const fetchCustomerSales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/customersales/'
+        'http://127.0.0.1:8000/api/customersales/',{
+          headers:{'Authorization':auth}
+        }
       );
 
       if (!response.ok) {
