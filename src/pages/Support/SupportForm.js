@@ -253,7 +253,7 @@ const newFormData = { ...editFormData };
             <thead>
               <tr>
                 <th>customerid</th>
-                <th>productid</th>
+                <th>productname</th>
                 <th>Support</th>
                 <th>Remarks</th>
                 <th>Status</th>

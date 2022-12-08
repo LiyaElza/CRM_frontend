@@ -3,18 +3,16 @@
 } */
 
 .search{
+    margin-left:200px;
     padding-left: 75px;
     padding-right: 54px;
-    /* margin-right: 1000px; */
-    /* height: 50px; */
     height: 45px;
+   
+   
     
 }
-
-
 .my-3{
-    
-    padding: 10px 20px 40px 2px;
+    padding: 10px 20px 40px 20px;
 }
 
  .customertable th{
@@ -35,7 +33,8 @@
     border-collapse:collapse;
  }
 
- .customertable tr:nth-child(even) {background-color: rgb(221, 221, 221);}
+ .customertable tr:nth-child(even) {background-color: rgb(221, 221, 221);
+}
 
 .btn-modal {
 
@@ -52,11 +51,8 @@
 
 .overlay{
 position: fixed;
-  
+
 }
-/* .search{
-    margin-left: 100px;
-} */
 
 .modal-content {
  align-items: center;
@@ -94,7 +90,7 @@ background-color: rgb(71, 65, 65);
 .container{
     width: 95vw;
     font-size: 27px;
-    padding-left: 50px;
+
     /* transform: translate(-50%,-50%); */
     /* padding-right: 30px; */
   

@@ -17,7 +17,7 @@ const EditableRow = ({
         
       </td>
       <td>
-        {editFormData.product}
+        {editFormData.productname}
       </td>
       <td>
        {editFormData.supporttype}

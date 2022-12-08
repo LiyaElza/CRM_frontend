@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import RecommendChart from "./RecommendChart";
 import './Recommendation.css';
 import Table from 'react-bootstrap/Table';
+
 function Recommendation() {
 
   const[hourlydata,setHourlyData]=useState([]);
@@ -72,11 +73,12 @@ const customerRecommendation={
       </div>
       <div className="bundle-data">
         <h3>bundle data</h3>
-      <Table className='Table1'>
+      <Table className='BundleDataTable'>
           <thead>
             <tr className='Row1'>
-              <th>Most Bought Together</th>
-              <th>Buys</th>
+              <th>Sl.No</th>
+              <th>products bought together</th>
+              <th>Analyze from cases</th>
             </tr>
           </thead>
         <tbody>

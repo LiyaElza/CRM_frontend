@@ -4,29 +4,34 @@ import List from './List';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Customeradd from './Customeradd';
+import PlusCustomer from './PlusCustomer';
 
 function Customers() {
    return (
-    <div>
+    <div className='customerlist'>
     <Navbar/>
     <span></span>
     <Tabs>
     <TabList className='tabs'>
-      <Tab><h4>View Customers</h4></Tab>
+      <Tab><h4>View All Customers</h4></Tab>
+      <Tab><h4>👑View Plus Customers</h4></Tab>
       <Tab><h4>Add Customers</h4></Tab>
     </TabList>
 
     <TabPanel>
       <List/>
     </TabPanel>
+
     <TabPanel>
-     {/* <div><h1>Hai</h1></div> */}
+      <PlusCustomer/>
+    </TabPanel>
+
+    <TabPanel>
      <Customeradd/>
     </TabPanel>
   </Tabs>
     </div>
     );
-
 
 }
 

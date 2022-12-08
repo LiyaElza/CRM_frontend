@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react'; 
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import './List.css';
 import DataTable from "react-data-table-component";
 import Button from 'react-bootstrap/Button';
 
-function List() {
+function PlusCustomer() {
   const [contacts, setContacts] = useState([]);
   const [filtercontacts, setFilterContacts] = useState([]);
   const [customerOrders,setCustomerOrders]=useState([]);
-  const [search, setSearch] = useState('');
   const [searchh, settSearch] = useState(''); 
   const [innerSearch, setInnerSearch] = useState('');
-  let auth=sessionStorage.getItem('jwt');
+
+
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/customers/',{headers:{
-                'Accept':'application/json',
-                 'Content-Type':'application/json',
-                 'Authorization':auth}}
+         'http://127.0.0.1:8000/apii/plusCustomers/'
        );
        if (!response.ok){
         throw  new Error('something went wrong!');
@@ -35,7 +31,8 @@ function List() {
           first_name: responseData[key].FirstName,
           last_name: responseData[key].LastName,
           email: responseData[key].Email,
-          phone: responseData[key].PhoneNumber,
+          phone: responseData[key].phone,
+          custamount: responseData[key].totalamount,
         });
       }
       setContacts(loadedCustomerDetails);
@@ -52,16 +49,14 @@ function List() {
 
     function handleChange(data){
       setModal(!modal);
-      // console.log(data)
-      
+     
       const fetchCustomerOrderDetails = async () => {
        const response=await fetch(
          'http://127.0.0.1:8000/apii/customerorders/',{
               method:'post',     
               headers: {
                 'Accept':'application/json',
-                'content-type':'application/json',
-                'Authorization':auth,
+                'content-type':'application/json'
               },
               body:JSON.stringify({
                 id:data,
@@ -105,14 +100,14 @@ function List() {
         selector: (row) => row.phone,
       },
       {
+        name: "totalamount",
+        selector: (row) => row.custamount,
+      },
+      {
         name: "Action",
         cell: (row)=><Button className='actionbutton'  variant="success" onClick={(event) => handleChange(row.id)}>Product List</Button>,
       },
-  
-      
     ];
-  
-  
 
   return (
   <div >
@@ -138,8 +133,6 @@ function List() {
 
     />
     </div>
-
-        
 
 {modal && (
   <div className="modal">
@@ -194,4 +187,4 @@ function List() {
   );
 }
 
-export default List;
+export default PlusCustomer;
