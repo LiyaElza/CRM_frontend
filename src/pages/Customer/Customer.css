@@ -7,11 +7,13 @@
 
     position: relative;
 
-    height: 100vh;
-   
+    height: 100vh; 
 
 }
-
+.customerlist{
+    overflow-x: hidden;
+    float: left;
+}
 
 
 .manage h1{
