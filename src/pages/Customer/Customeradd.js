@@ -11,7 +11,7 @@ const Customeradd = () => {
         setState(event.target.files[0]);
     };
 
-
+    let auth=sessionStorage.getItem('jwt');
     const onFileUpload = (e) => {
         e.preventDefault();
         setState(e.target.files);
@@ -20,8 +20,9 @@ const Customeradd = () => {
         formData.append('employeedetails',selectedFile);
         fetch('http://127.0.0.1:8000/employee/addemployee/', {method: 'post',
         headers:{'Accept':'application/json',
-
-                'Content-Type':'application/json'},
+                'Content-Type':'application/json',
+                'Authorization':auth,
+            },
 
                 // 'Authorization':auth},
                 body: formData})

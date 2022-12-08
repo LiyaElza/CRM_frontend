@@ -21,7 +21,7 @@ function Form() {
   const[errorproductType,setProductTypeError]=useState(false);
   const[errorproductName,setProductNameerror]=useState(false);
   const[alertMsg,setAlertMsg]=useState('');
-
+  let auth=sessionStorage.getItem('jwt');
   useEffect(()=>{
       const fetchData=async ()=>{
       const response=await fetch('http://127.0.0.1:8000/app/products/')
@@ -44,7 +44,11 @@ function Form() {
 
    useEffect(() => {
     const productdetails = async () => {
-      axios.get("http://127.0.0.1:8000/aoffer/offer/")
+      let config = {
+        headers: {
+          'Authorization': auth
+        },}
+      axios.get("http://127.0.0.1:8000/aoffer/offer/",config)
       .then(res => {
         setMenuItems(res.data);
       });
@@ -72,6 +76,7 @@ function Form() {
         headers:{
           'Accept':'application/json',
           'Content-Type':'application/json',
+          'Authorization':auth,
         }
       });
 

@@ -8,6 +8,7 @@ function View() {
     const [menuItems, setMenuItems] = useState([]);
     useEffect(() => {
         const productdetails = async () => {
+          let config={}
           axios.get("http://127.0.0.1:8000/aoffer/offer/")
           .then(response => {
             setMenuItems(response.data);

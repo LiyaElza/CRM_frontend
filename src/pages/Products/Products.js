@@ -19,12 +19,15 @@ function Products() {
 
   const [categories, setCategories] = useState(['All']);
   const [allMenuItems, setAllMenuItems] = useState([]);
-
-
+  let auth=sessionStorage.getItem('jwt');
 
   useEffect(() => {
     const productdetails = async () => {
-      axios.get('http://127.0.0.1:8000/app/products/')
+      const config = {
+        headers: { 'Authorization':auth  }
+    };
+    
+      axios.get('http://127.0.0.1:8000/app/products/',config)
       .then(res => {
         setMenuItems(res.data);
       
@@ -37,7 +40,10 @@ function Products() {
 
   useEffect(() => {
     const productdetailss = async () => {
-      axios.get('http://127.0.0.1:8000/app/products/')
+      const config = {
+        headers: { 'Authorization':auth  }
+    };
+      axios.get('http://127.0.0.1:8000/app/products/',config)
       .then(res => {
         setAllMenuItems(res.data);
       
@@ -54,7 +60,7 @@ function Products() {
   const onFileChange = event => {
       setState(event.target.files[0]);
   };
-  let auth=sessionStorage.getItem('jwt');
+  
   const onFileUpload = (e) => {
       e.preventDefault();
       setState(e.target.files)

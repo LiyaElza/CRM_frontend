@@ -8,7 +8,7 @@ const ReadOnlyRow = ({ support, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{support.customer}</td>
-      <td>{support.product}</td>
+      <td>{support.productname}</td>
       <td>{support.supporttype}</td>
       <td>{support.remarks}</td>
       <td>{support.status}</td>

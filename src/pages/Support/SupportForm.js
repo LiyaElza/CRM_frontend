@@ -12,14 +12,15 @@ import { RxReset } from "react-icons/rx";
 const SupportForm = () => {
     const [supports, setSupports] = useState([]);
     const [product,setProduct]=useState([])
-
+    let auth=sessionStorage.getItem('jwt');
     const fetchCustomerProducts= async(data) =>{
       const response=await fetch(
         'http://127.0.0.1:8000/apii/customerorders/',{
              method:'POST',     
              headers: {
                'Accept':'application/json',
-               'content-type':'application/json'
+               'content-type':'application/json',
+               'Authorization':auth
              },
              body:JSON.stringify({
                id:data,
@@ -41,7 +42,13 @@ const SupportForm = () => {
 
     const fetchsupportdetails = async () => {
       const response=await fetch(
-        'http://127.0.0.1:8000/supportapi/support/'
+        'http://127.0.0.1:8000/supportapi/support/',{
+          headers:{'Accept':'application/json',
+
+          'Content-Type':'application/json',
+
+          'Authorization':auth}
+        }
       );
       if (!response.ok){
        throw  new Error('something went wrong!');
@@ -94,7 +101,7 @@ const newFormData = { ...editFormData };
   
       const newSupport = {
         "customer": addFormData.customer,
-        "product": addFormData.product,
+        "productname": addFormData.productname,
         "supporttype": addFormData.supporttype,
         "remarks": addFormData.remarks,
         "status":addFormData.status
@@ -105,7 +112,8 @@ const newFormData = { ...editFormData };
                body:JSON.stringify(newSupport),  
                headers: {
                  'Accept':'application/json',
-                 'content-type':'application/json'
+                 'content-type':'application/json',
+                 'Authorization':auth,
                }},
                
                  
@@ -124,7 +132,7 @@ const newFormData = { ...editFormData };
   
       const editedSupport = {
         customer: editFormData.customer,
-        product: editFormData.product,
+        productname: editFormData.productname,
         supporttype: editFormData.support,
         remarks: editFormData.remarks,
         status: editFormData.status
@@ -133,7 +141,7 @@ const newFormData = { ...editFormData };
       const newSupports = [...supports];
       const requestOptions = {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json','Authorization':auth },
         body: JSON.stringify(editedSupport)
     };
         fetch(`http://127.0.0.1:8000/supportapi/editsupport/${editSupportId}`, requestOptions)
@@ -152,7 +160,7 @@ const newFormData = { ...editFormData };
   
       const formValues = {
         customer: support.customer,
-        product: support.product,
+        productname: support.productname,
         supporttype: support.supporttype,
         remarks: support.remarks,
         status:support.status
@@ -167,7 +175,11 @@ const newFormData = { ...editFormData };
   
     const handleDeleteClick = (supportId) => {
       const newSupports = [...supports];
-      axios.delete(`http://127.0.0.1:8000/supportapi/editsupport/${supportId}`)  
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json','Authorization':auth },
+      }
+      axios.delete(`http://127.0.0.1:8000/supportapi/editsupport/${supportId}`,requestOptions)  
       .then(res => {   
     
         const items = supports.filter(item => item.id !== supportId);  
@@ -206,7 +218,7 @@ const newFormData = { ...editFormData };
           <option value="">Choose Product</option>
           </select><br></br>
           </div> */}
-          <select onChange={(val) => handleAddFormChange("product",val.target.value)}>
+          <select onChange={(val) => handleAddFormChange("productname",val.target.value)}>
           <option  value="">Choose Product</option>
           {product.map(item=>(
           <option value={item}>{item}</option> 
@@ -241,7 +253,7 @@ const newFormData = { ...editFormData };
             <thead>
               <tr>
                 <th>customerid</th>
-                <th>productid</th>
+                <th>productname</th>
                 <th>Support</th>
                 <th>Remarks</th>
                 <th>Status</th>

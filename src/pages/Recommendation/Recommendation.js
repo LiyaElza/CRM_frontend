@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import RecommendChart from "./RecommendChart";
 import './Recommendation.css';
@@ -6,11 +6,12 @@ import Table from 'react-bootstrap/Table';
 
 function Recommendation() {
 
-  const[Recommends,setRecommends]=useState([]);
-    // useEffect(() => {
+  const[hourlydata,setHourlyData]=useState([]);
+  const[productbundle,setProductBundle]=useState({})
+  useEffect(()=>{
     const fetchHourlySales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/monthlysales/'
+        'http://127.0.0.1:8000/analysis/adrecommendations/'
       );
 
       if (!response.ok) {
@@ -19,30 +20,36 @@ function Recommendation() {
 
       const responseData = await response.json();
 
-      
-      const loadedHourlySales = [];
-
-      for (const key in responseData) {
-        loadedHourlySales.push({
-          id: responseData[key].id,
-          monthlist: responseData[key].monthlist,
-          sales: responseData[key].sales,
-        });
-      }
-
-      setRecommends(loadedHourlySales);
+      console.log(responseData)
+      setHourlyData(responseData);
     };
 
     fetchHourlySales().catch((error) => {
     });
   
-    
+    const fetchproductbundle = async () => {
+      const res = await fetch(
+        'http://127.0.0.1:8000/analysis/productbundles/'
+      );
+
+      if (!res.ok) {
+        throw new Error('Something went wrong!');
+      }
+
+    const resData = await res.json();
+    setProductBundle(resData);
+    console.log(productbundle)
+    };
+
+    fetchproductbundle().catch((error) => {
+    });
+  },[])
 const customerRecommendation={
-    labels: Recommends.map((data) => data.year),
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
     datasets: [
       {
-        label: "Recommendations",
-        data: Recommends.map((data) => data.number),
+        label: "Hourly Sales",
+        data: hourlydata.map(data => data),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -53,6 +60,7 @@ const customerRecommendation={
       },
     ],
   }
+
     return(
         <div>
         <Navbar/>
@@ -62,24 +70,22 @@ const customerRecommendation={
         <div className='charts-line'>
         <h3>Hourly sales demand</h3>
         <RecommendChart chartData={customerRecommendation} />
-        {/* <button onClick={generateCustomerReport}>Download Report</button> */}
       </div>
       <div className="bundle-data">
         <h3>bundle data</h3>
       <Table className='BundleDataTable'>
           <thead>
-            <tr className='BundleDataRow'>
+            <tr className='Row1'>
               <th>Sl.No</th>
               <th>products bought together</th>
               <th>Analyze from cases</th>
             </tr>
           </thead>
         <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>tv,fridge</td>
-                  <td>high sales </td>
-                </tr>
+          {
+            Object.entries(productbundle)
+            .map( ([key, value]) => <tr key={key}><td>{key}</td><td>{value}</td></tr> )
+          }
         </tbody>
       </Table>
       </div>
