@@ -3,10 +3,10 @@ import Navbar from "../../components/Navbar";
 import RecommendChart from "./RecommendChart";
 import './Recommendation.css';
 import Table from 'react-bootstrap/Table';
+
 function Recommendation() {
 
   const[Recommends,setRecommends]=useState([]);
-
     // useEffect(() => {
     const fetchHourlySales = async () => {
       const response = await fetch(
@@ -66,9 +66,9 @@ const customerRecommendation={
       </div>
       <div className="bundle-data">
         <h3>bundle data</h3>
-      <Table className='Table1'>
+      <Table className='BundleDataTable'>
           <thead>
-            <tr className='Row1'>
+            <tr className='BundleDataRow'>
               <th>Sl.No</th>
               <th>products bought together</th>
               <th>Analyze from cases</th>
