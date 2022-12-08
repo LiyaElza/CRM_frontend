@@ -101,7 +101,7 @@ const newFormData = { ...editFormData };
   
       const newSupport = {
         "customer": addFormData.customer,
-        "product": addFormData.product,
+        "productname": addFormData.productname,
         "supporttype": addFormData.supporttype,
         "remarks": addFormData.remarks,
         "status":addFormData.status
@@ -132,7 +132,7 @@ const newFormData = { ...editFormData };
   
       const editedSupport = {
         customer: editFormData.customer,
-        product: editFormData.product,
+        productname: editFormData.productname,
         supporttype: editFormData.support,
         remarks: editFormData.remarks,
         status: editFormData.status
@@ -160,7 +160,7 @@ const newFormData = { ...editFormData };
   
       const formValues = {
         customer: support.customer,
-        product: support.product,
+        productname: support.productname,
         supporttype: support.supporttype,
         remarks: support.remarks,
         status:support.status
@@ -218,7 +218,7 @@ const newFormData = { ...editFormData };
           <option value="">Choose Product</option>
           </select><br></br>
           </div> */}
-          <select onChange={(val) => handleAddFormChange("product",val.target.value)}>
+          <select onChange={(val) => handleAddFormChange("productname",val.target.value)}>
           <option  value="">Choose Product</option>
           {product.map(item=>(
           <option value={item}>{item}</option> 

@@ -24,7 +24,7 @@ function Form() {
   let auth=sessionStorage.getItem('jwt');
   useEffect(()=>{
       const fetchData=async ()=>{
-      const response=await fetch('http://127.0.0.1:8000/app/products/',{headers:""})
+      const response=await fetch('http://127.0.0.1:8000/app/products/')
       const newData=await response.json();
       setProduct(newData);
       console.log(newData);

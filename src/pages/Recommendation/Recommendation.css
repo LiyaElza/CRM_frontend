@@ -5,8 +5,8 @@ h2{
 .charts-line{
     align-items: center;
     margin-top: 100px;
-    width : 500px;
-    height: 800px;
+    width : 700px;
+    height: 700px;
     /* flex: 33.33%; */
     padding-left :25px;
 }
