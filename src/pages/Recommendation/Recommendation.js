@@ -76,7 +76,6 @@ const customerRecommendation={
       <Table className='BundleDataTable'>
           <thead>
             <tr className='Row1'>
-              <th>Sl.No</th>
               <th>products bought together</th>
               <th>Analyze from cases</th>
             </tr>
