@@ -3,7 +3,6 @@
 } */
 
 .search{
-    margin-left:200px;
     padding-left: 75px;
     padding-right: 54px;
     height: 45px;
@@ -12,7 +11,8 @@
     
 }
 .my-3{
-    padding: 10px 20px 40px 20px;
+    margin-left:200px;
+    padding-left: 200px;
 }
 
  .customertable th{
