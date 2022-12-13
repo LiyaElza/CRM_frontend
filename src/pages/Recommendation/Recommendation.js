@@ -72,7 +72,7 @@ const customerRecommendation={
         <RecommendChart chartData={customerRecommendation} />
       </div>
       <div className="bundle-data">
-        <h3>bundle data</h3>
+        <h3>Most Sold Together</h3>
       <Table className='BundleDataTable'>
           <thead>
             <tr className='Row1'>
