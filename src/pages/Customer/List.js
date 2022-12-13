@@ -52,7 +52,6 @@ function List() {
 
     function handleChange(data){
       setModal(!modal);
-      // console.log(data)
       
       const fetchCustomerOrderDetails = async () => {
        const response=await fetch(
@@ -105,15 +104,16 @@ function List() {
         selector: (row) => row.phone,
       },
       {
+        name: "total credit",
+        selector: (row) => row.custamount,
+      },
+      {
         name: "Action",
         cell: (row)=><Button className='actionbutton'  variant="success" onClick={(event) => handleChange(row.id)}>Product List</Button>,
       },
-  
-      
     ];
   
   
-
   return (
   <div >
     <span></span>
@@ -140,13 +140,12 @@ function List() {
     </div>
 
         
-
 {modal && (
   <div className="modal">
     <div onClick={toggleModal} className="overlay"></div>
     <div className="modal-content">
 
-    <h3><strong>Customer Purchase History</strong></h3>
+    <h2>Customer Purchase History</h2>
       <Form>
           <InputGroup className='my-3'>
             <Form.Control className='search'
@@ -184,14 +183,13 @@ function List() {
       </Table>
 
       <button className="close-modal" onClick={toggleModal}> X </button>
-   
       </div>
     </div>
 
    )}
     </div>
-</div>
-  );
+  </div>
+ );
 }
 
 export default List;

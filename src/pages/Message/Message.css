@@ -26,7 +26,6 @@
    padding: 1;
    border-radius: 20px;
    background-color: #0d4779;
-   
 }
 .emailButton:hover{
   background-color:rgb(24, 176, 236);
@@ -73,7 +72,6 @@ font-size: 20px;
 } */
 .emailbuttondiv{
    margin-left: 300px;
-   
 }
 .subjectbox{
     /* background-color: bisque;  */
@@ -90,9 +88,6 @@ font-size: 20px;
     font-weight: bold;
     text-align: center;
 }
-
-
-
 
 
 

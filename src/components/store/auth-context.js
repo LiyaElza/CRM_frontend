@@ -4,7 +4,7 @@ import { Link, Redirect} from 'react-router-dom';
 
 const AuthContext = React.createContext({
 //   user:{},
-  token: '',
+  token: null,
   isLoggedIn: false,
   login: (token) => {},
   setUser:(user)=>{},

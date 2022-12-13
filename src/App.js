@@ -19,16 +19,28 @@ function App() {
   const authCtx = useContext(AuthContext);
   return (
     <Switch>
-        {!authCtx.isLoggedIn && ( <Route path='/' exact><AuthForm /></Route>)}
-        {authCtx.isLoggedIn && ( <Route path='/' exact><Home/></Route>)}
-        {authCtx.isLoggedIn && ( <Route path='/home' exact><Home/></Route>)}
+        {!authCtx.isLoggedIn ? ( <Route path='/' exact><AuthForm /></Route>):(
+          <>
+          <Route path='/' exact><Home/></Route>
+          <Route path='/products' ><Products/></Route>
+          <Route path='/support' ><SupportForm/></Route>
+          <Route path='/customers' ><Customers/></Route>
+          <Route path='/reports' ><Reports/></Route>
+          <Route path='/offers' ><Offers/></Route>
+          <Route path='/message' ><Message /></Route>
+          <Route path='/recommendation' ><Recommendation /></Route>
+          </>
+        )}
+        {/* {authCtx.isLoggedIn && ( <Route path='/' exact><Home/></Route>)} */}
+        
+        {/* {authCtx.isLoggedIn && ( <Route path='/home' exact><Home/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/products' ><Products/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/support' ><SupportForm/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/customers' ><Customers/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/reports' ><Reports/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/offers' ><Offers/></Route>)}
         {authCtx.isLoggedIn && ( <Route path='/message' ><Message /></Route>)}
-        {authCtx.isLoggedIn && ( <Route path='/recommendation' ><Recommendation /></Route>)}
+        {authCtx.isLoggedIn && ( <Route path='/recommendation' ><Recommendation /></Route>)} */}
       
         {/* {!authCtx.isLoggedIn && (
           <Route path='/auth'>
