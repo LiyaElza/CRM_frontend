@@ -40,8 +40,6 @@ function Message() {
         setAlertMsg("Please enter the Message");
       }
 
-
-
       setEmailsub('');
       setEmailMsg('');
       setMessage('');
