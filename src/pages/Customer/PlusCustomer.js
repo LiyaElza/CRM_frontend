@@ -100,7 +100,7 @@ function PlusCustomer() {
         selector: (row) => row.phone,
       },
       {
-        name: "totalamount",
+        name: "total credits",
         selector: (row) => row.custamount,
       },
       {
@@ -139,7 +139,7 @@ function PlusCustomer() {
     <div onClick={toggleModal} className="overlay"></div>
     <div className="modal-content">
 
-    <h3><strong>Customer Purchase History</strong></h3>
+    <h2><strong>Customer Purchase History</strong></h2>
       <Form>
           <InputGroup className='my-3'>
             <Form.Control className='search'

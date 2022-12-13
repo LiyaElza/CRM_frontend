@@ -12,7 +12,7 @@ function Reports() {
   const [monthData,setMonthData]=useState([]);
   const [productData,setProductData]=useState([]);
   const [customerData,setCustomerData]=useState([]);
-  let auth=sessionStorage.getItem('jwt');
+  let auth=sessionStorage.getItem('jwt');
 
 
   const [userData, setUserData] = useState({
@@ -47,10 +47,7 @@ function Reports() {
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
-
-      const responseData = await response.json();
-
-      
+      const responseData = await response.json();   
       const loadedMonthlySales = [];
 
       for (const key in responseData) {
@@ -81,11 +78,7 @@ function Reports() {
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
-
       const responseData = await response.json();
-
-      
-      
       const loadedProductSales = [];
 
       for (const key in responseData) {
@@ -94,10 +87,7 @@ function Reports() {
           producttype: responseData[key].producttype,
           sales: responseData[key].sales,
         });
-      }
-
-
-      
+      }  
       setProductData(loadedProductSales);
 
     };
