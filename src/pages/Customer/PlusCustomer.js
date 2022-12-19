@@ -17,7 +17,7 @@ function PlusCustomer() {
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/plusCustomers/'
+         'http://127.0.0.1:8000/customers/plusCustomers/'
        );
        if (!response.ok){
         throw  new Error('something went wrong!');
@@ -32,7 +32,7 @@ function PlusCustomer() {
           last_name: responseData[key].LastName,
           email: responseData[key].Email,
           phone: responseData[key].phone,
-          custamount: responseData[key].totalamount,
+          credits: responseData[key].credits,
         });
       }
       setContacts(loadedCustomerDetails);
@@ -52,7 +52,7 @@ function PlusCustomer() {
      
       const fetchCustomerOrderDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/customerorders/',{
+         'http://127.0.0.1:8000/customers/customerorders/',{
               method:'post',     
               headers: {
                 'Accept':'application/json',
@@ -101,7 +101,7 @@ function PlusCustomer() {
       },
       {
         name: "total credits",
-        selector: (row) => row.custamount,
+        selector: (row) => row.credits,
       },
       {
         name: "Action",

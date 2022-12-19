@@ -16,15 +16,25 @@ function Form() {
   const[offerMsg,setOfferMsg]=useState('')
   const [product,setProduct]=useState([])
   const [menuItems, setMenuItems] = useState([]);
+  const[startdate,setStartDate]=useState('')
+  const[enddate,setEndDate]=useState('');
 
   const[error,setError]=useState(false);
   const[errorproductType,setProductTypeError]=useState(false);
   const[errorproductName,setProductNameerror]=useState(false);
   const[alertMsg,setAlertMsg]=useState('');
-  let auth=sessionStorage.getItem('jwt');
+  let auth= window.sessionStorage.jwt
+
+  const handleStartDate=(event)=>{
+    setStartDate(event.target.value)
+  } 
+  const handleEndDate=(event)=>{
+    setEndDate(event.target.value)
+  } 
+
   useEffect(()=>{
       const fetchData=async ()=>{
-      const response=await fetch('http://127.0.0.1:8000/app/products/')
+      const response=await fetch('http://127.0.0.1:8000/products/products/')
       const newData=await response.json();
       setProduct(newData);
       console.log(newData);
@@ -41,14 +51,14 @@ function Form() {
     setOfferMsg(event.target.value)
    }
 
-
+   console.log(auth)
    useEffect(() => {
     const productdetails = async () => {
       let config = {
         headers: {
-          'Authorization': auth
+          Authorization: auth
         },}
-      axios.get("http://127.0.0.1:8000/aoffer/offer/",config)
+      axios.get("http://127.0.0.1:8000/offer/offer/",config)
       .then(res => {
         setMenuItems(res.data);
       });
@@ -59,23 +69,21 @@ function Form() {
 
   }, []);
 
-
-
-
    let addButton = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/aoffer/offer/", {
+      let res = await fetch("http://127.0.0.1:8000/offer/offer/", {
         method: "POST",
         body: JSON.stringify({
-          id:menuItems[menuItems.length-1].id+1,
-          product_type:productType,
-          product: productName,
-          message:offerMsg,
+          "id":menuItems[menuItems.length-1].id+1,
+          "product_type":productType,
+          "product": productName,
+          "message":offerMsg,
+          "startDate":startdate,
+          "endDate":enddate
         }),
         headers:{
-          'Accept':'application/json',
-          'Content-Type':'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
           'Authorization':auth,
         }
       });
@@ -143,7 +151,7 @@ function Form() {
   ))}
   <option value="">Choose Product Type</option>
  </select>
- <div className='subin'>
+ <div className='msgAlert'>
 
     {errorproductType}
 
@@ -160,12 +168,23 @@ function Form() {
   ))}
  
  </select>
- <div className='subin'>
+ <div className='msgAlert'>
 
     {errorproductName}
 
     </div>
-
+    < div className='datesectionoffer'>
+            <br></br>
+            <label for="subject" id="pstar">Start Date</label>
+            <div className='startdate' value={startdate} onChange={handleStartDate}>
+           <input type="date" id="startdate" name="startdate"></input>
+           </div>
+           <label for="subject" id="pstar">End Date</label>
+            <div className='startdate' value={enddate} onChange={handleEndDate}>
+           <input type="date" id="enddate" name="enddate"></input>
+           </div>
+           </div>
+           <br></br>
     
     
       <label for="subject" id="star">Offers</label> <br></br>
@@ -179,7 +198,7 @@ function Form() {
        
        ></textarea>
        </div>
-       <div className='subin'>
+       <div className='msgAlert'>
 
     {error}
 
@@ -188,7 +207,7 @@ function Form() {
    <div>
        <button className='buttonask' type="Submit">Submit</button>
        </div>
-       <div className='akshay'>
+       <div className='alertSend'>
 
     {alertMsg}
 

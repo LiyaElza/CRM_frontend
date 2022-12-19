@@ -8,14 +8,13 @@ import { distinct } from "@progress/kendo-data-query";
 import { RiAddFill } from "react-icons/ri";
 
 import { RxReset } from "react-icons/rx";
-
 const SupportForm = () => {
     const [supports, setSupports] = useState([]);
     const [product,setProduct]=useState([])
-    let auth=sessionStorage.getItem('jwt');
+    let auth= `${JSON.parse( sessionStorage.getItem('jwt'))}`
     const fetchCustomerProducts= async(data) =>{
       const response=await fetch(
-        'http://127.0.0.1:8000/apii/customerorders/',{
+        'http://127.0.0.1:8000/customers/customerorders/',{
              method:'POST',     
              headers: {
                'Accept':'application/json',
@@ -42,7 +41,7 @@ const SupportForm = () => {
 
     const fetchsupportdetails = async () => {
       const response=await fetch(
-        'http://127.0.0.1:8000/supportapi/support/',{
+        'http://127.0.0.1:8000/support/support/',{
           headers:{'Accept':'application/json',
 
           'Content-Type':'application/json',
@@ -107,7 +106,7 @@ const newFormData = { ...editFormData };
         "status":addFormData.status
       };
       const response=await fetch(
-          'http://127.0.0.1:8000/supportapi/support/',{
+          'http://127.0.0.1:8000/support/support/',{
                method:"POST", 
                body:JSON.stringify(newSupport),  
                headers: {
@@ -144,7 +143,7 @@ const newFormData = { ...editFormData };
         headers: { 'Content-Type': 'application/json','Authorization':auth },
         body: JSON.stringify(editedSupport)
     };
-        fetch(`http://127.0.0.1:8000/supportapi/editsupport/${editSupportId}`, requestOptions)
+        fetch(`http://127.0.0.1:8000/support/editsupport/${editSupportId}`, requestOptions)
         .then(response => response.json())
 
   
@@ -179,7 +178,7 @@ const newFormData = { ...editFormData };
         method: 'PUT',
         headers: { 'Content-Type': 'application/json','Authorization':auth },
       }
-      axios.delete(`http://127.0.0.1:8000/supportapi/editsupport/${supportId}`,requestOptions)  
+      axios.delete(`http://127.0.0.1:8000/support/editsupport/${supportId}`,requestOptions)  
       .then(res => {   
     
         const items = supports.filter(item => item.id !== supportId);  
@@ -195,38 +194,18 @@ const newFormData = { ...editFormData };
             type="text"
             name="customer"
             required="required"
-            placeholder="Enter customerid"
+            placeholder="Enter customerid*"
             onChange={(val)=>handleAddFormChange("customer",val.target.value)}
           /><br />
-
-          {/* <label for="subject"></label>     
-          <div className=''>
-          <select onChange={(val) => handleAddFormChange("customer",val.target.value)}> 
-            {result.map(item=>(
-            <option key={item.id} value={item.id}>{item.id}</option> 
-          ))}
-          <option value="">Choose Customer Id</option>
-          </select><br></br>
-
-        </div> */}
-          {/* <label for="subject"></label> 
-          <div className=''>
-          <select className=''value={productName} onChange={handlenameChange}> 
-            {result.map(item=>(
-            <option key={item.id}>{item.title}</option> 
-          ))}
-          <option value="">Choose Product</option>
-          </select><br></br>
-          </div> */}
           <select onChange={(val) => handleAddFormChange("productname",val.target.value)}>
-          <option  value="">Choose Product</option>
+          <option  value="">Choose Product*</option>
           {product.map(item=>(
           <option value={item}>{item}</option> 
         ))}
  
         </select><br></br>
         <select onChange={(val) => handleAddFormChange("supporttype",val.target.value)}>
-        <option value="" selected>Enter kind of support needed </option>
+        <option value="" selected>Enter kind of support needed* </option>
         <option value="Product Use & Support">Product Use & Support</option>
         <option value="Product Service">Product Service</option>
         <option value="Product Spare Parts">Product Spare Parts</option>
@@ -234,10 +213,10 @@ const newFormData = { ...editFormData };
         <input
           type="text"
           name="remarks"
-          placeholder="Enter Remarks if any"
+          placeholder="Enter Remarks*"
           onChange={(val) => handleAddFormChange("remarks",val.target.value)} /><br />
         <select onChange={(val) => handleAddFormChange("status",val.target.value)}>
-        <option value="" selected>Status</option>
+        <option value="" selected>Status*</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
         <option value="Not Initiated">Not Initiated</option>
@@ -252,8 +231,8 @@ const newFormData = { ...editFormData };
           <table className="supporttable">
             <thead>
               <tr>
-                <th>customerid</th>
-                <th>productname</th>
+                <th>Customerid</th>
+                <th>Productname</th>
                 <th>Support</th>
                 <th>Remarks</th>
                 <th>Status</th>

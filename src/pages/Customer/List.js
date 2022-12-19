@@ -14,11 +14,11 @@ function List() {
   const [search, setSearch] = useState('');
   const [searchh, settSearch] = useState(''); 
   const [innerSearch, setInnerSearch] = useState('');
-  let auth=sessionStorage.getItem('jwt');
+  let auth= `${JSON.parse( sessionStorage.getItem('jwt'))}`
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/customers/',{headers:{
+         'http://127.0.0.1:8000/customers/customers/',{headers:{
                 'Accept':'application/json',
                  'Content-Type':'application/json',
                  'Authorization':auth}}
@@ -36,6 +36,7 @@ function List() {
           last_name: responseData[key].LastName,
           email: responseData[key].Email,
           phone: responseData[key].PhoneNumber,
+          credits:responseData[key].credits
         });
       }
       setContacts(loadedCustomerDetails);
@@ -55,7 +56,7 @@ function List() {
       
       const fetchCustomerOrderDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/apii/customerorders/',{
+         'http://127.0.0.1:8000/customers/customerorders/',{
               method:'post',     
               headers: {
                 'Accept':'application/json',
@@ -105,7 +106,7 @@ function List() {
       },
       {
         name: "total credit",
-        selector: (row) => row.custamount,
+        selector: (row) => row.credits,
       },
       {
         name: "Action",

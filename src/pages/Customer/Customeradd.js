@@ -18,7 +18,7 @@ const Customeradd = () => {
 
         const formData = new FormData();
         formData.append('employeedetails',selectedFile);
-        fetch('http://127.0.0.1:8000/employee/addemployee/', {method: 'post',
+        fetch('http://127.0.0.1:8000/customer/customeradd', {method: 'post',
         headers:{'Accept':'application/json',
                 'Content-Type':'application/json',
                 'Authorization':auth,

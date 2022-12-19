@@ -25,7 +25,7 @@ function Message() {
           'Authorization': auth
         },}
       const data={"subject":emailsubject,"message":emailmsg}
-      axios.post('http://127.0.0.1:8000/mailapp/mail/',data,config)
+      axios.post('http://127.0.0.1:8000/mail/mail/',data,config)
       .then(function (response) {
         if(response?.status===200)
         console.log(message)
@@ -61,7 +61,7 @@ function Message() {
               className="emailsub"
               
               ></input>
-              <div className='subin'>
+              <div className='msgAlert'>
 
 {alertsubject}
 
@@ -78,7 +78,7 @@ function Message() {
               className="mailtext"
               
               ></textarea>
-              <div className='subin'>
+              <div className='msgAlert'>
 
 {alertmsg}
 

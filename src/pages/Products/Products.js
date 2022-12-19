@@ -27,7 +27,7 @@ function Products() {
         headers: { 'Authorization':auth  }
     };
     
-      axios.get('http://127.0.0.1:8000/app/products/',config)
+      axios.get('http://127.0.0.1:8000/products/products/',config)
       .then(res => {
         setMenuItems(res.data);
       
@@ -43,7 +43,7 @@ function Products() {
       const config = {
         headers: { 'Authorization':auth  }
     };
-      axios.get('http://127.0.0.1:8000/app/products/',config)
+      axios.get('http://127.0.0.1:8000/products/products/',config)
       .then(res => {
         setAllMenuItems(res.data);
       
@@ -67,7 +67,7 @@ function Products() {
       const formData = new FormData()
       formData.append('file',selectedFile)
       console.log(formData)
-      fetch('http://127.0.0.1:8000/app/productsupload/', {method: 'POST',
+      fetch('http://127.0.0.1:8000/poducts/productsupload/', {method: 'POST',
       headers:{
         Accept:'application/json',
 
