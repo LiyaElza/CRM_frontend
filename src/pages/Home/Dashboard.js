@@ -9,11 +9,12 @@ import './Dashboard.css';
 
 const Dashboard = () => {
     const [count, setCount] = useState([]);
-    let auth=sessionStorage.getItem('jwt');
+    // let auth=sessionStorage.getItem('jwt');
+    let auth= `${JSON.parse( sessionStorage.getItem('jwt'))}`
     useEffect(()=>{
       const fetchCustomerDetails = async () => {
        const response=await fetch(
-         'http://127.0.0.1:8000/api2/dashboard/',{
+         'http://127.0.0.1:8000/home/dashboard/',{
             headers:{'Accept':'application/json',
                 'Content-Type':'application/json',
                 'Authorization':auth, 

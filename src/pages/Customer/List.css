@@ -10,6 +10,11 @@
     margin-left: 200px;
        
 }
+.sc-dIfARi{
+
+    margin-left: 70px;
+
+}
 .my-3{
     margin-left:200px;
     padding-left: 200px;
@@ -131,7 +136,7 @@ font-size: 2em;
    overflow:none;
    float: left;
    width: 10px;
-   margin-left: 100px;
+   /* margin-left: 100px; */
    /* height:100px; */
 
 }

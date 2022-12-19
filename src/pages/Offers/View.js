@@ -6,10 +6,11 @@ import './View.css';
 
 function View() {
     const [menuItems, setMenuItems] = useState([]);
+    const auth=window.sessionStorage.jwt
     useEffect(() => {
         const productdetails = async () => {
-          let config={}
-          axios.get("http://127.0.0.1:8000/aoffer/offer/")
+          let config={headers:{'Authorization':auth}}
+          axios.get("http://127.0.0.1:8000/offer/offer/",config)
           .then(response => {
             setMenuItems(response.data);
           });
@@ -31,6 +32,8 @@ function View() {
               <th>Product Type</th>
               <th>Product Name</th>
               <th>Offer Message</th>
+              <th>Start Date</th>
+              <th>End Date</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +44,8 @@ function View() {
                   <td>{item.product_type}</td>
                   <td>{item.product}</td>
                   <td>{item.message}</td>
+                  <td>{item.startDate}</td>
+                  <td>{item.endDate}</td>
                   </tr>);
 })}
           </tbody>

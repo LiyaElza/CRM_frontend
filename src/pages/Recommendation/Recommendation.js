@@ -42,7 +42,7 @@ function Recommendation() {
 
     const fetchHourlyProductSales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/monthlysales/',{
+        'http://127.0.0.1:8000/analysis/hourlyproductanalysis/',{
           headers:{
             'Authorization':auth
           }
@@ -52,16 +52,8 @@ function Recommendation() {
         throw new Error('Something went wrong!');
       }
       const responseData = await response.json();   
-      const loadedHourlyProductSales = [];
-
-      for (const key in responseData) {
-        loadedHourlyProductSales.push({
-          id: responseData[key].id,
-          monthlist: responseData[key].monthlist,
-          sales: responseData[key].sales,
-        });
-      }
-      setCurrentHourSales(loadedHourlyProductSales);
+      setCurrentHourSales(responseData);
+      console.log(currentHourSales)
     };
     fetchHourlyProductSales().catch((error) => {
     });
@@ -83,14 +75,17 @@ const customerRecommendation={
       },
     ],
   }
-  
+  const date = new Date();
+    const showTime = date.getHours() 
+        + ':' + date.getMinutes() 
+        + ":" + date.getSeconds();
 
   const hourlyProductSales={
-    labels: currentHourSales.map((data) => data.monthlist),
+    labels: currentHourSales.map((data)=>Object.entries(data).map( ([key, value]) => key )),
     datasets: [
       {
         label: "Sales Amount",
-        data: currentHourSales.map((data) => data.sales),
+        data: currentHourSales.map((data)=>Object.entries(data).map( ([key, value]) => value )),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -100,6 +95,20 @@ const customerRecommendation={
       },
     ],
   }
+  const options = {
+    scales: {
+      y:
+        {
+          min: -15,
+          max: 15,
+          stepSize: 5,
+        },
+      x:
+        {
+          
+        },
+    },
+  };
 
     return(
         <div>
@@ -112,7 +121,7 @@ const customerRecommendation={
         <RecommendChart chartData={customerRecommendation} />
       </div>
       <div className="bundle-data">
-        <h3>bundle data</h3>
+        <h3>Most Sold Together</h3>
       <Table className='BundleDataTable'>
           <thead>
             <tr className='Row1'>
@@ -132,8 +141,8 @@ const customerRecommendation={
 
       <div className='charts-bar'>
       <h3>Sales Analysis in current Hour</h3>
-        <RecommendBarChart chartData={hourlyProductSales} />
-        {/* <button onClick={generateMonthlyReport}>Download Report</button> */}
+      <h4>Current Time is {showTime}</h4>
+        <RecommendBarChart chartData={hourlyProductSales} options={options} />
       </div>
 
         </div>

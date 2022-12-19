@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import PieChart from './PieChart';
 import LineChart from './LineChart';
 import BarChart from './BarChart';
@@ -9,66 +9,60 @@ import Navbar from '../../components/Navbar';
 
 function Reports() {
 
-  const [monthData,setMonthData]=useState([]);
+  const [monthData,setMonthData]=useState({});
   const [productData,setProductData]=useState([]);
   const [customerData,setCustomerData]=useState([]);
+  const [selectedYear,setSelectedYear]=useState(2022);
   let auth=sessionStorage.getItem('jwt');
 
 
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
-    datasets: [
-      {
-        label: "Users Gained",
-        data: UserData.map((data) => data.userGain),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
-        borderColor: "black",
-        borderWidth: 2,
-      },
-    ],
-  });
-
+  // const [userData, setUserData] = useState({
+  //   labels: UserData.map((data) => data.year),
+  //   datasets: [
+  //     {
+  //       label: "Users Gained",
+  //       data: UserData.map((data) => data.userGain),
+  //       backgroundColor: [
+  //         "rgba(75,192,192,1)",
+  //         "#ecf0f1",
+  //         "#50AF95",
+  //         "#f3ba2f",
+  //         "#2a71d0",
+  //       ],
+  //       borderColor: "black",
+  //       borderWidth: 2,
+  //     },
+  //   ],
+  // });
+  
+  
   useEffect(() => {
-    const fetchMonthlySales = async () => {
-      const response = await fetch(
-        'http://127.0.0.1:8000/api/monthlysales/',{
+    // const handleYearChange=async()=>{
+    //   
+    //   console.log(data)
+    const fetchMonthlySales = async (value) => {
+      console.log(value)
+      const response = await fetch('http://127.0.0.1:8000/reports/monthlysales/',{
+          method:"POST",
+          body:JSON.stringify({"year":selectedYear}),
           headers:{
-            'Authorization':auth
-          }
-        }
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization':auth},
+        },
       );
-
+  
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
       const responseData = await response.json();   
-      const loadedMonthlySales = [];
-
-      for (const key in responseData) {
-        loadedMonthlySales.push({
-          id: responseData[key].id,
-          monthlist: responseData[key].monthlist,
-          sales: responseData[key].sales,
-        });
-      }
-
-
-      setMonthData(loadedMonthlySales);
-
+      setMonthData(responseData);
+  
     };
-
     fetchMonthlySales().catch((error) => {
     });
-
     const fetchProductSales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/productsales/',{
+        'http://127.0.0.1:8000/reports/productsales/',{
           headers:{
             'Authorization':auth
           }
@@ -98,7 +92,7 @@ function Reports() {
     
     const fetchCustomerSales = async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/customersales/',{
+        'http://127.0.0.1:8000/reports/customersales/',{
           headers:{'Authorization':auth}
         }
       );
@@ -129,15 +123,19 @@ function Reports() {
     fetchCustomerSales().catch((error) => {
     });
 
-  }, []);
+  },[]);
 
+
+  const handleYearChange=(year)=>{
+    setSelectedYear(year)
+  }
 
   const monthlyData={
-    labels: monthData.map((data) => data.monthlist),
+    labels: Object.keys(monthData),
     datasets: [
       {
         label: "Sales Amount",
-        data: monthData.map((data) => data.sales),
+        data: Object.values(monthData),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -147,7 +145,6 @@ function Reports() {
       },
     ],
   }
-
   const productTypeData={
     labels: productData.map((data) => data.producttype),
     datasets: [
@@ -183,15 +180,15 @@ function Reports() {
   }
   const generateProductReport=()=>{
 
-    window.open('http://127.0.0.1:8000/api/generateProductReport/', '_blank', 'noopener,noreferrer');
+    window.open('http://127.0.0.1:8000/reports/generateProductReport/', '_blank', 'noopener,noreferrer');
   
   }
   const generateMonthlyReport=()=>{
-    window.open('http://127.0.0.1:8000/api/generateMonthlyReport/', '_blank', 'noopener,noreferrer');
+    window.open('http://127.0.0.1:8000/reports/generateMonthlyReport/', '_blank', 'noopener,noreferrer');
   }
 
   const generateCustomerReport=()=>{
-    window.open('http://127.0.0.1:8000/api/generateCustomerReport/','_blank', 'noopener,noreferrer');
+    window.open('http://127.0.0.1:8000/reports/generateCustomerReport/','_blank', 'noopener,noreferrer');
   }
 
   return (
@@ -203,6 +200,12 @@ function Reports() {
    
     <div className='charts bar'>
       <h3>Sales Analysis in a Month</h3>
+      <label>Select Year</label>
+        < select onChange={(val)=>handleYearChange(val.target.value)}>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
         <BarChart chartData={monthlyData} />
         <button onClick={generateMonthlyReport}>Download Report</button>
         

@@ -1,0 +1,63 @@
+.inneroffer{
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+#birthday{
+    /* background-color: blueviolet; */
+    /* border-radius: 10px; */
+    width: 150px;
+    padding-left: 30px;
+}
+  
+  .offerformform{
+    padding-top: 5px;
+    width: 800px;
+     height: 400px;
+     /* border-radius: 12px; */
+     box-shadow: rgba(0,0,0,0.25);
+     background-color: rgb(123, 161, 171);
+  }
+  .datesection{
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: brown; */
+
+  }
+  .startdate{
+    margin-left: 7%;
+  }
+  #pstar{
+    margin-left: 7%;
+  }
+  .credit{
+    margin-left: 4%;
+    /* border-radius: 12px; */
+    width: 50px;
+  }
+  .mincredit{
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .pmsg{
+    margin-left: 7%;
+  }
+  .creditinside{
+    padding-left: 10px;
+    /* border-radius: 12px; */
+    font-size: large;
+  }
+  .premium{
+    font-size: x-large;
+   padding-left: 255px;
+    color: black;
+   }
+   #pstar::after{
+
+    position: absolute;
+  
+    content: "*";
+  
+    color:rgb(207, 20, 20);
+  
+  }
